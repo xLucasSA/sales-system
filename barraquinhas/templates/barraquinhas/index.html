@@ -1,0 +1,17 @@
+{% extends "./base.html" %}
+{% load static %} 
+
+{% block title %} Barraquinhas {% endblock %} 
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'barraquinhas/css/index.css' %}" />
+{% endblock %}
+
+
+{%block content%}
+    <main>
+        <a href="{% url 'login' %}"><button class="btn btn-success">Sistema de Vendas</button></a>
+        <a href="{% url 'customadmin:index' %}"><button class="btn btn-success">Área Administrativa</button></a>
+    </main>
+{% endblock %}

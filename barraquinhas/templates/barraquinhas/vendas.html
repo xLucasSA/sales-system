@@ -1,0 +1,55 @@
+{% extends "./base.html" %}
+{% load static %} 
+
+{% block title %} Barraquinhas {% endblock %} 
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'barraquinhas/css/vendas.css' %}" />
+    <link rel="stylesheet" href="{% static 'barraquinhas/css/sidebar.css' %}" />
+{% endblock %}
+
+
+{%block content%}
+<main>
+    {% include "./sidebar.html" %}
+
+    <div id="content">
+        
+        {% for categoria, produtos in categorias.items %}
+
+            <div class="card">
+                <div class="card-header">
+                    {{categoria}}
+                </div>
+                
+                <div class="categoria-card">
+                    {% for produto in produtos %}
+                        <div class="card items" style="max-width: 300px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="..." class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8 textos">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{produto.nome}}</h5>
+                                        <p class="card-text">R$ {{ produto.valor | floatformat:2 }}</p>
+                                        <div class="adicao-items" id="{{produto.id_produto}}">
+                                            <img src="{% static 'barraquinhas/img/dash-circle-fill.png' %}" width="24" height="24">
+                                            <p class="card-text"><small class="text-body-secondary">0</small></p>
+                                            <img src="{% static 'barraquinhas/img/plus-circle-fill.png' %}" width="24" height="24">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}    
+                </div>
+            </div>
+
+        {% endfor %}
+
+    </div>
+</main>
+
+{%endblock%}

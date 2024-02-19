@@ -1,0 +1,38 @@
+main{ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 86vh;
+}
+
+#saoPedro {
+    max-width: 65%;
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-radius: 15px;
+    margin: 15px;
+}
+
+form {
+    width: 65%;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+button {
+    margin-bottom: 10px;
+    width: 32.5%;
+}
+
+button a {
+    text-decoration: none;
+    color: white;
+}
+
+@media (max-width: 615px) {
+    button {
+        width: 65%;
+    }
+}

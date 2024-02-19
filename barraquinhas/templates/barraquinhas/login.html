@@ -1,0 +1,45 @@
+{% extends "./base.html" %}
+{% load static %} 
+
+{% block title %} Login {% endblock %} 
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'barraquinhas/css/login.css' %}" />
+{% endblock %}
+
+
+{%block content%}
+<main>
+    <img
+        id="saoPedro"
+        src="{% static 'barraquinhas/img/São Pedro Index.jpg' %}"
+        class="img-fluid"
+        alt="Paróquia São Pedro Apóstolo"
+    />
+
+    <form>
+    <div class="form-floating mb-3">
+        <input
+        type="text"
+        class="form-control"
+        id="floatingInput"
+        placeholder="Login"
+        />
+        <label>Login</label>
+    </div>
+    <div class="form-floating">
+        <input
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Senha"
+        />
+        <label>Senha</label>
+    </div>
+    </form>
+    <button type="submit" class="btn btn-success">Entrar</button>
+    <button type="submit" class="btn btn-secondary">Recuperar Senha</button>
+</main>
+
+{%endblock%}
