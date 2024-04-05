@@ -1,13 +1,10 @@
 main{ 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     height: 86vh;
+    justify-content: center;
 }
 
 #saoPedro {
-    max-width: 65%;
+    width: 40%;
     padding: 10px;
     background-color: #f2f2f2;
     border-radius: 15px;
@@ -15,7 +12,7 @@ main{
 }
 
 form {
-    width: 65%;
+    width: 40%;
     text-align: center;
     font-size: 16px;
     margin-bottom: 25px;
@@ -23,7 +20,7 @@ form {
 
 button {
     margin-bottom: 10px;
-    width: 32.5%;
+    width: 30%;
 }
 
 button a {
@@ -33,6 +30,14 @@ button a {
 
 @media (max-width: 615px) {
     button {
-        width: 65%;
+        width: 50%;
+    }
+    
+    #saoPedro { 
+        width: 75%;
+    }
+
+    form {
+        width: 50%;
     }
 }

@@ -1,0 +1,15 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+    {% for produto in produtos %}
+        {% for item in produto %}
+            <p>{{item}}</p>
+        {% endfor %}
+
+
+    {% endfor %}
+
+    <p>R$ {{total_pedido | floatformat:2}}
+
+{% endblock %}

@@ -1,5 +1,6 @@
 main{ 
     display: flex;
+    flex-direction: row;
     min-height: 86vh;
     width: 100%;
 }
@@ -11,6 +12,10 @@ main{
 
 #content {
     background-color: rgba(245, 222, 179, 0.5);
+    width: 100%;
+}
+
+form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -40,12 +45,16 @@ main{
     margin: 0;
 }
 
+.adicao-items img:hover {
+    cursor: pointer;
+}
+
 .textos {
     border-left: 0.3px solid #00000050;
 }
 
 .card-header {
-    text-align: center;
+    text-align: left;
     background-color: #225d6e;
     color: white;
 }
@@ -57,8 +66,17 @@ main{
     text-align: right;
 }
 
+.card-body input {
+    width: 100%;
+}
+
 .categoria-card {
     display: flex;
     flex-wrap: wrap;
     background-color: #225d6e50;
+}
+
+button {
+    width: 15%;
+    margin: 5px;
 }

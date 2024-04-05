@@ -17,14 +17,12 @@
     {% block styles %} {% endblock %}
   </head>
   <body>    
-    <div id="root">
-      {% include "./header.html" %}
+    {% include "./header.html" %}
+  
+    {% block content %} {% endblock %}
 
-      {% block content %} {% endblock %}
+    {% include "./footer.html" %}
 
-      <footer></footer>
-    </div>
-    
     {% block scripts %} {% endblock %}
   </body>
 </html>

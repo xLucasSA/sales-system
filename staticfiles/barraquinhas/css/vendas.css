@@ -1,5 +1,6 @@
 main{ 
     display: flex;
+    flex-direction: row;
     min-height: 86vh;
     width: 100%;
 }
@@ -12,19 +13,40 @@ main{
 #content {
     background-color: rgba(245, 222, 179, 0.5);
     width: 100%;
+}
+
+form {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 8px;
-    gap: 8px;
 }
 
 .card {
     width: 100%;
     display: flex;
-    margin: 10px;
+    margin: 10px 0;
     border-radius: 5px;
     border: 1px solid #000;
+}
+
+.items {
+    margin: 10px;
+}
+
+.adicao-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.adicao-items p{
+    margin: 0;
+}
+
+.adicao-items img:hover {
+    cursor: pointer;
 }
 
 .textos {
@@ -32,7 +54,7 @@ main{
 }
 
 .card-header {
-    text-align: center;
+    text-align: left;
     background-color: #225d6e;
     color: white;
 }
@@ -44,8 +66,17 @@ main{
     text-align: right;
 }
 
+.card-body input {
+    width: 100%;
+}
+
 .categoria-card {
     display: flex;
     flex-wrap: wrap;
     background-color: #225d6e50;
+}
+
+button {
+    width: 15%;
+    margin: 5px;
 }

@@ -15,41 +15,72 @@
     {% include "./sidebar.html" %}
 
     <div id="content">
-        
-        {% for categoria, produtos in categorias.items %}
+        <form method="post" action="{% url 'checkout' %}" id="formularioVendas">
+            {% csrf_token %}
+            {% for categoria, produtos in categorias.items %}
 
-            <div class="card">
-                <div class="card-header">
-                    {{categoria}}
-                </div>
-                
-                <div class="categoria-card">
-                    {% for produto in produtos %}
-                        <div class="card items" style="max-width: 300px;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="..." class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="col-md-8 textos">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{produto.nome}}</h5>
-                                        <p class="card-text">R$ {{ produto.valor | floatformat:2 }}</p>
-                                        <div class="adicao-items" id="{{produto.id_produto}}">
-                                            <img src="{% static 'barraquinhas/img/dash-circle-fill.png' %}" width="24" height="24">
-                                            <p class="card-text"><small class="text-body-secondary">0</small></p>
-                                            <img src="{% static 'barraquinhas/img/plus-circle-fill.png' %}" width="24" height="24">
+                <div class="card">
+                    <div class="card-header">
+                        {{categoria}}
+                    </div>
+                    
+                    <div class="categoria-card">
+                        {% for produto in produtos %}
+                            <div class="card items" style="max-width: 300px;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img src="..." class="img-fluid rounded-start" alt="...">
+                                    </div>
+                                    <div class="col-md-8 textos">
+                                        <div class="card-body">
+                                            {% if produto.nome != "Doação" %}
+                                                <h5 class="card-title">{{produto.nome}}</h5>
+                                                <p class="card-text">R$ {{ produto.valor | floatformat:2 }}</p>
+                                                <div class="adicao-items">
+                                                    <img 
+                                                        src="{% static 'barraquinhas/img/dash-circle-fill.png' %}" 
+                                                        width="24" 
+                                                        height="24" 
+                                                        onClick="variarQuantidade({{produto.id_produto}}, 'reduzir')"
+                                                    />
+                                                    
+                                                    <p class="card-text"><small class="text-body-secondary" id="{{produto.id_produto}}">0</small></p>
+                                                    
+                                                    <img 
+                                                        src="{% static 'barraquinhas/img/plus-circle-fill.png' %}" 
+                                                        width="24" 
+                                                        height="24"
+                                                        onClick="variarQuantidade({{produto.id_produto}}, 'aumentar')"    
+                                                    />
+                                                </div>
+                                            {% else %}
+                                                <h5 class="card-title">{{produto.nome}}</h5>
+                                                <p class="card-text"><small class="text-body-secondary">Valor a ser doado</small></p>
+                                                <div class="input-group">
+                                                    <span class="input-group-text">R$</span>
+                                                    <input type="number" placeholder="1,00" step="0.01" min="0" id="{{produto.id_produto}}" class="form-control" />
+                                                </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}    
+                        {% endfor %}    
+                    </div>
                 </div>
-            </div>
 
-        {% endfor %}
-
+            {% endfor %}
+            
+            <button type="button" onclick="coletarEnviar({{id_produtos}})" class="btn btn-success">Finalizar Pedido</button>
+            <button type="button" onClick="limparCampos({{id_produtos}})" class="btn btn-secondary">Limpar</button>
+        </form>
     </div>
 </main>
 
 {%endblock%}
+
+{% block scripts %}
+
+    <script src="{% static 'barraquinhas/js/vendas.js' %}"></script>
+
+{% endblock %}
