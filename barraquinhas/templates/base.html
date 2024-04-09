@@ -6,13 +6,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {% load bootstrap5 %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-
     <title>{% block title %} {% endblock %}</title>
 
-    <link rel="stylesheet" href="{% static 'barraquinhas/css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 
     {% block styles %} {% endblock %}
   </head>
@@ -21,8 +18,9 @@
   
     {% block content %} {% endblock %}
 
-    {% include "./footer.html" %}
-
+    <script src="{% static 'js/bootstrap.js' %}"></script>
     {% block scripts %} {% endblock %}
   </body>
+
+  {% include "./footer.html" %}
 </html>

@@ -8,6 +8,7 @@ class Produtos(models.Model):
         ALIMENTOS = 'A', 'Alimentos'
         BEBIDAS = 'B', 'Bebidas'
         JOGOS = 'J', 'Jogos'
+        DOACAO = 'D', 'Doação'
         OUTROS = 'O', 'Outros'
 
     class Medida(models.TextChoices):
@@ -21,7 +22,7 @@ class Produtos(models.Model):
     nome = models.CharField(max_length=200, null=False, blank=False)
     valor = models.FloatField(null=False, blank=False)
     categoria = models.CharField(max_length=1, choices=Categoria.choices, default=Categoria.OUTROS)
-    ativo = models.BooleanField(null=False, blank=False)
+    ativo = models.BooleanField(null=False, blank=False, default=True)
     medida = models.CharField(max_length=2, choices=Medida.choices, default=Medida.OUTROS)
 
     def __str__(self) -> str:

@@ -1,0 +1,41 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block styles %} 
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}" />
+{% endblock %}
+
+{% block content %}
+<main>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Produtos</td>
+                <th scope="col">Valor Unitário</td>
+                <th scope="col">Quantidade</td>
+                <th scope="col">Valor Final</td>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for produto in pedido %}
+                <tr>
+                    <td>{{produto.produto}}</td>
+                    <td>R$ {{produto.valor_unitario | floatformat:2}}</td>
+                    <td>{{produto.quantidade}}</td>
+                    <td>R$ {{produto.valor_final | floatformat:2}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" id="total">Total Pedido</td>
+                <td>R$ {{total_pedido | floatformat:2}}</td>
+            </tr>
+        </tfoot>
+    </table>
+    <div>   
+        <a href="{% url 'venda_finalizada' %}"><button type="button" class="btn btn-success">Finalizar Pedido</button></a>
+        <a href="{% url 'vendas' %}"><button type="button" class="btn btn-secondary">Voltar</button></a>
+    </div>
+</main>
+{% endblock %}

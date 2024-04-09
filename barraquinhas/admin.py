@@ -10,7 +10,7 @@ class AdminProdutos(admin.ModelAdmin):
     search_fields = ['nome']
 
     def valor_formatado(self, obj):
-        valor = "R${:,.2f}".format(obj.valor)
+        valor = "R$ {:,.2f}".format(obj.valor)
         valor = valor.replace('.', '*').replace(',', '.').replace('*', ',')
         return valor
     

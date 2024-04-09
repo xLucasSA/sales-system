@@ -1,0 +1,52 @@
+{% extends "./base.html" %}
+{% load static %} 
+
+{% block title %} Login {% endblock %} 
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock %}
+
+
+{%block content%}
+<main>
+    {% if mensagem %}
+        <div id="login_erro" class="alert alert-danger">{{mensagem}}</div>
+    {% endif %}
+    <img
+        id="saoPedro"
+        src="{% static 'img/São Pedro Index.jpg' %}"
+        class="img-fluid"
+        alt="Paróquia São Pedro Apóstolo"
+    />
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-floating mb-3">
+            <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="Login"
+            name="username"
+            />
+            <label>Login</label>
+        </div>
+        <div class="form-floating">
+            <input
+                type="password"
+                class="form-control"
+                id="floatingPassword"
+                placeholder="Senha"
+                name="password"
+            />
+            <label>Senha</label>
+        </div>
+        <div id="botoes">
+            <button type="submit" class="btn btn-success">Entrar</button>
+            <button type="button" class="btn btn-secondary">Recuperar Senha</button>
+        </div>
+    </form>
+</main>
+
+{%endblock%}

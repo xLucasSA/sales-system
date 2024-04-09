@@ -5,8 +5,8 @@
 
 
 {% block styles %}
-    <link rel="stylesheet" href="{% static 'barraquinhas/css/vendas.css' %}" />
-    <link rel="stylesheet" href="{% static 'barraquinhas/css/sidebar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vendas.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}" />
 {% endblock %}
 
 
@@ -38,7 +38,7 @@
                                                 <p class="card-text">R$ {{ produto.valor | floatformat:2 }}</p>
                                                 <div class="adicao-items">
                                                     <img 
-                                                        src="{% static 'barraquinhas/img/dash-circle-fill.png' %}" 
+                                                        src="{% static 'img/dash-circle-fill.png' %}" 
                                                         width="24" 
                                                         height="24" 
                                                         onClick="variarQuantidade({{produto.id_produto}}, 'reduzir')"
@@ -47,7 +47,7 @@
                                                     <p class="card-text"><small class="text-body-secondary" id="{{produto.id_produto}}">0</small></p>
                                                     
                                                     <img 
-                                                        src="{% static 'barraquinhas/img/plus-circle-fill.png' %}" 
+                                                        src="{% static 'img/plus-circle-fill.png' %}" 
                                                         width="24" 
                                                         height="24"
                                                         onClick="variarQuantidade({{produto.id_produto}}, 'aumentar')"    
@@ -71,7 +71,7 @@
 
             {% endfor %}
             
-            <button type="button" onclick="coletarEnviar({{id_produtos}})" class="btn btn-success">Finalizar Pedido</button>
+            <button type="button" onclick="coletarEnviar({{id_produtos}})" class="btn btn-success">Confirmar Pedido</button>
             <button type="button" onClick="limparCampos({{id_produtos}})" class="btn btn-secondary">Limpar</button>
         </form>
     </div>
@@ -81,6 +81,6 @@
 
 {% block scripts %}
 
-    <script src="{% static 'barraquinhas/js/vendas.js' %}"></script>
+    <script src="{% static 'js/vendas.js' %}"></script>
 
 {% endblock %}

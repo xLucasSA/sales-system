@@ -1,0 +1,35 @@
+#sidebar {
+    display: table-cell;
+    align-content: center;
+    background-color: #225d6e;
+    width: 20%;
+    max-width: 175px;
+    text-align: center;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%
+}
+
+#sidebar li {
+    padding: 5px;
+    display: block;
+    transition: 0.3s ease-in-out;
+}
+
+#sidebar li:hover {
+    color: #225d6e;
+    background-color: wheat;
+}
+
+#sidebar a {
+    text-decoration: none;
+    color: white;
+}
+
+#sidebar a:hover {
+    color: #225d6e;
+}
