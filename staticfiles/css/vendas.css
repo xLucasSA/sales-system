@@ -1,6 +1,6 @@
-main{ 
-    display: flex;
-    flex-direction: row;
+main{
+    display: grid;
+    grid-template-columns: 175px auto;
     min-height: 86vh;
     width: 100%;
 }

@@ -15,7 +15,7 @@
     {% include "./sidebar.html" %}
 
     <div id="content">
-        <form method="post" action="{% url 'checkout' %}" id="formularioVendas">
+        <form method="post" action="{% url 'checkout' %}" id="formulario_vendas">
             {% csrf_token %}
             {% for categoria, produtos in categorias.items %}
 
@@ -33,9 +33,9 @@
                                     </div>
                                     <div class="col-md-8 textos">
                                         <div class="card-body">
-                                            {% if produto.nome != "Doação" %}
-                                                <h5 class="card-title">{{produto.nome}}</h5>
-                                                <p class="card-text">R$ {{ produto.valor | floatformat:2 }}</p>
+                                            {% if produto.categoria != "D" %}
+                                                <h5 class="card-title" id="{{produto.id_produto}}-nome">{{produto.nome}}</h5>
+                                                <p class="card-text" id="{{produto.id_produto}}-preco">R$ {{ produto.valor | floatformat:2 }}</p>
                                                 <div class="adicao-items">
                                                     <img 
                                                         src="{% static 'img/dash-circle-fill.png' %}" 
@@ -44,7 +44,7 @@
                                                         onClick="variarQuantidade({{produto.id_produto}}, 'reduzir')"
                                                     />
                                                     
-                                                    <p class="card-text"><small class="text-body-secondary" id="{{produto.id_produto}}">0</small></p>
+                                                    <p class="card-text"><small class="text-body-secondary" id="{{produto.id_produto}}-quantidade">0</small></p>
                                                     
                                                     <img 
                                                         src="{% static 'img/plus-circle-fill.png' %}" 
@@ -54,11 +54,11 @@
                                                     />
                                                 </div>
                                             {% else %}
-                                                <h5 class="card-title">{{produto.nome}}</h5>
+                                                <h5 class="card-title" id="{{produto.id_produto}}-nome">{{produto.nome}}</h5>
                                                 <p class="card-text"><small class="text-body-secondary">Valor a ser doado</small></p>
                                                 <div class="input-group">
                                                     <span class="input-group-text">R$</span>
-                                                    <input type="number" placeholder="1,00" step="0.01" min="0" id="{{produto.id_produto}}" class="form-control" />
+                                                    <input type="number" placeholder="1,00" step="0.01" min="0" id="{{produto.id_produto}}-quantidade" class="form-control" />
                                                 </div>
                                             {% endif %}
                                         </div>
@@ -71,7 +71,7 @@
 
             {% endfor %}
             
-            <button type="button" onclick="coletarEnviar({{id_produtos}})" class="btn btn-success">Confirmar Pedido</button>
+            <button type="button" onclick="coletarEnviarProdutos({{id_produtos}})" class="btn btn-success">Fechar Pedido</button>
             <button type="button" onClick="limparCampos({{id_produtos}})" class="btn btn-secondary">Limpar</button>
         </form>
     </div>

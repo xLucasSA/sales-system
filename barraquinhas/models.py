@@ -38,17 +38,18 @@ class Vendas(models.Model):
         DEBITO = 2, 'Catão de Débito'
         CREDITO = 3, 'Cartão de Crédito'
         PIX = 4, 'PIX'
-        DOACAO = 5, 'Doação'
 
     id_venda = models.AutoField(primary_key=True, unique=True)
     id_vendedor = models.ForeignKey(User, on_delete=models.CASCADE)
     data_venda = models.DateField(null=False, blank=False, default=dateNow())
-    forma_pagamento = models.IntegerField(null=False, blank=False, default=1)
+    forma_pagamento = models.IntegerField(null=False, blank=False, default=Pagamento.DINHEIRO, choices=Pagamento.choices)
+    valor_total = models.FloatField(null=False, blank=False)
     ativo = models.BooleanField(default=True)
 
+    class Meta:
+        verbose_name_plural = "Vendas"
 
 class ItensVenda(models.Model):
     id_venda = models.ForeignKey(Vendas, on_delete=models.CASCADE)
     id_produto = models.ForeignKey(Produtos, on_delete=models.CASCADE)
-    ativo = models.BooleanField(default=True)
     quantidade = models.IntegerField(null=False, blank=False)

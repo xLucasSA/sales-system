@@ -1,5 +1,5 @@
 function variarQuantidade(id, operacao) {
-    let quantidadeHTML = document.getElementById(id)
+    let quantidadeHTML = document.getElementById(id+"-quantidade")
     const quantidadeNum = Number(quantidadeHTML.innerText)
     let novaQuantidade = 0
 
@@ -13,39 +13,48 @@ function variarQuantidade(id, operacao) {
     quantidadeHTML.innerText = novaQuantidade
 }
 
-function limparCampos(produtos) {
-    for (let produto of produtos) {
-        let produtoHtml = document.getElementById(produto)
+function limparCampos(idProdutos) {
+    for (let idProduto of idProdutos) {
+        let produtoHtml = document.getElementById(idProduto+"-quantidade")
         
         produtoHtml.tagName == "INPUT" ? produtoHtml.value = 0 : produtoHtml.innerText = 0
     }
 }
 
-function coletarEnviar(produtos) {
-    const formData = {};
-    
-    for (let produto of produtos) {
-        let produtoHtml = document.getElementById(produto)
-
-        let quantidade = produtoHtml.tagName == "INPUT" ? Number(produtoHtml.value) : Number(produtoHtml.innerText)
-
-        if (quantidade > 0) {
-            formData[produto] = quantidade
-        }
-        else {
-            continue
-        }
-    }
+function gerarFormulario(formData, formId) {
+    const newForm = document.getElementById(formId)
 
     for (let chave in formData) {
         let hiddenField = document.createElement("input");
         hiddenField.setAttribute("type", "hidden");
         hiddenField.setAttribute("name", chave);
         hiddenField.setAttribute("value", formData[chave]);
-        document.getElementById("formularioVendas").appendChild(hiddenField);
+        newForm.appendChild(hiddenField);
     }
 
-    if (Object.keys(formData).length > 0) {
-        document.getElementById("formularioVendas").submit();
+    return newForm
+}
+
+function coletarEnviarProdutos(idProdutos) {
+    const formData = {};
+    
+    for (let idProduto of idProdutos) {
+        const quantidadeHtml = document.getElementById(idProduto+"-quantidade")
+        const quantidade = quantidadeHtml.tagName == "INPUT" ? Number(quantidadeHtml.value) : Number(quantidadeHtml.innerText)
+
+        if (quantidade > 0) {
+            formData[idProduto] = quantidade
+        }
+        else {
+            continue
+        }
+    }
+
+    const form = gerarFormulario(formData, "formulario_vendas")
+    
+    const resposta = confirm("Deseja fechar o pedido?")
+
+    if (Object.keys(form).length > 0 && resposta) {
+        document.getElementById("formulario_vendas").submit();
     }
 }

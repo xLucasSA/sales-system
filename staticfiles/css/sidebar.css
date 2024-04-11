@@ -1,39 +1,34 @@
-#sideBar {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
-    display: block;
-    
+#sidebar {
+    display: flex;
+    height: -webkit-fill-available;
     background-color: #225d6e;
-    width: 25%;
-    max-width: 200px;
-    text-align: center;
+    text-align: justify;
+    align-items: center;
 }
 
-#sideBar ul {
+#sidebar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 100%
+    width: 100%;
 }
 
-#sideBar li {
-    padding: 5px;
+#sidebar li {
+    padding: 5px 15px;
     display: block;
     transition: 0.3s ease-in-out;
 }
 
-#sideBar li:hover {
+#sidebar li:hover {
     color: #225d6e;
     background-color: wheat;
 }
 
-#sideBar a {
+#sidebar a {
     text-decoration: none;
     color: white;
 }
 
-#sideBar a:hover {
+#sidebar a:hover {
     color: #225d6e;
 }

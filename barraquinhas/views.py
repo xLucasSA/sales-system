@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import Produtos
+from .forms import *
+from django.utils.timezone import now as dateNow
 
 def index(request):
     return render(request, 'index.html')
@@ -53,7 +55,8 @@ def checkout(request):
     if request.method == 'POST':
         context = {
             "total_pedido": 0,
-            "pedido" : []
+            "pedido" : [],
+            "form": FormaPagamento()
         } 
 
         for id_produto, quantidade in request.POST.items():
@@ -70,12 +73,52 @@ def checkout(request):
                 })
 
                 context['total_pedido'] += float(quantidade) * produto.valor
-    print(request.body)
+
     return render(request, 'checkout.html', context)
 
 
 @login_required(login_url="/login")
 def gerar_venda(request):
-    print(request.body)
+    
+    if request.method == "POST":
+        dados_venda = {
+            'id_vendedor': request.user.id,
+            'data_venda': dateNow().date(),
+            'ativo': True,
+        }
+        itens_vendidos = {}
 
-    return redirect('vendas')
+
+        for id, quantidade in request.POST.items():
+            if id == 'forma_pagamento':
+                dados_venda['forma_pagamento'] = int(quantidade)
+
+            elif id == 'valor_total':
+                dados_venda['valor_total'] = float(quantidade)
+
+            else:
+                if id != 'csrfmiddlewaretoken':
+                    itens_vendidos[id] = quantidade
+
+        venda_realizada = VendasForm(dados_venda)
+
+        if venda_realizada.is_valid():
+            venda_registrada = venda_realizada.save()
+            
+            for item, quantidade in itens_vendidos.items():
+                item_venda = {
+                    'id_produto': item,
+                    'quantidade': quantidade,
+                    'id_venda': venda_registrada.id_venda
+                }
+
+                registro_item_venda = ItensVendasForm(item_venda)
+                
+                if registro_item_venda.is_valid():
+                    registro_item_venda.save()
+
+            return redirect('vendas')
+                
+
+        #informar que houve erro ao registrar a venda 
+      

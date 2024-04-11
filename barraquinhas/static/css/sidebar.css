@@ -1,21 +1,20 @@
 #sidebar {
-    display: table-cell;
-    align-content: center;
+    display: flex;
+    height: -webkit-fill-available;
     background-color: #225d6e;
-    width: 20%;
-    max-width: 175px;
-    text-align: center;
+    text-align: justify;
+    align-items: center;
 }
 
 #sidebar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 100%
+    width: 100%;
 }
 
 #sidebar li {
-    padding: 5px;
+    padding: 5px 15px;
     display: block;
     transition: 0.3s ease-in-out;
 }
