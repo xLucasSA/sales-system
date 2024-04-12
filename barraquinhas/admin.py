@@ -32,7 +32,7 @@ class AdminVendas(admin.ModelAdmin):
     valor_formatado.short_description = 'Valor (R$)'
 
     def data_formatada(self, obj):
-        data =  datetime.date.strftime(obj.data_venda, "%d/%m/%Y")
+        data = datetime.date.strftime(obj.data_venda, "%d/%m/%Y")
         return data
     
     @admin.display(boolean=True)

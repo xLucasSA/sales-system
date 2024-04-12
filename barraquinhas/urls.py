@@ -5,5 +5,6 @@ urlpatterns = [
     path('login', login_view, name='login'),
     path('vendas', vendas, name='vendas'),
     path('checkout', checkout, name='checkout'),
-    path('venda-gerada', gerar_venda, name='venda_finalizada')
+    path('venda-gerada', gerar_venda, name='venda_finalizada'),
+    path('historico', historico_vendas, name='historico_vendas')
 ]

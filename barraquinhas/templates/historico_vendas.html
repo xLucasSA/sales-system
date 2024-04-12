@@ -1,0 +1,48 @@
+{% extends "./base.html" %}
+{% load static %} 
+
+{% block title %} Barraquinhas {% endblock %} 
+
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/historico_vendas.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}" />
+{% endblock %}
+
+
+{%block content%}
+<main>
+    {% include "./sidebar.html" %}
+
+    <div id="content">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th scope="col" class="colunas-centralizadas">#</td>
+                    <th scope="col">Data</td>
+                    <th scope="col">Forma Pagamento</td>
+                    <th scope="col">Valor Final</td>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for regsitro in registros %}
+                    <tr>
+                        <td class="colunas-centralizadas"><img class="simbolo-mais" src="{% static 'img/plus-square.png' %}"></td>
+                        <td>{{regsitro.data_venda}}</td>
+                        <td>{{regsitro.get_forma_pagamento_display}}</td>
+                        <td>R$ {{regsitro.valor_total | floatformat:2}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+
+{%endblock%}
+
+{% block scripts %}
+
+    <script src="{% static 'js/vendas.js' %}"></script>
+
+{% endblock %}

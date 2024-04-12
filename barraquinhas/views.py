@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Produtos
 from .forms import *
 from django.utils.timezone import now as dateNow
+import datetime
+from django.db.models import Q
 
 def index(request):
     return render(request, 'index.html')
@@ -122,3 +124,19 @@ def gerar_venda(request):
 
         #informar que houve erro ao registrar a venda 
       
+@login_required(login_url="/login")
+def historico_vendas(request):
+    user = request.user
+
+    if user.is_staff:
+        pass
+    
+    registros = Vendas.objects.filter(id_vendedor=user.id, data_venda=dateNow())
+    id_vendas = []
+
+    for registro in registros:
+        registro.data_venda = datetime.date.strftime(registro.data_venda, "%d/%m/%Y")
+        id_vendas.append(registro.id_venda)
+        
+
+    return render(request, 'historico_vendas.html', {'registros': registros})

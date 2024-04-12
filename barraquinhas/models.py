@@ -48,6 +48,7 @@ class Vendas(models.Model):
 
     class Meta:
         verbose_name_plural = "Vendas"
+        ordering = ['-data_venda']
 
 class ItensVenda(models.Model):
     id_venda = models.ForeignKey(Vendas, on_delete=models.CASCADE)
