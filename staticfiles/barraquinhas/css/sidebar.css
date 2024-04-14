@@ -25,7 +25,7 @@
 }
 
 #sideBar li:hover {
-    color: #225d6e;
+    color: var(--cor-principal);
     background-color: wheat;
 }
 
@@ -35,5 +35,5 @@
 }
 
 #sideBar a:hover {
-    color: #225d6e;
+    color: var(--cor-principal);
 }

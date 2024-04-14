@@ -73,7 +73,7 @@ form {
 .categoria-card {
     display: flex;
     flex-wrap: wrap;
-    background-color: #225d6e50;
+    background-color: var(--cor-secundaria);
 }
 
 button {

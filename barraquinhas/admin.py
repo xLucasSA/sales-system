@@ -1,11 +1,29 @@
 from django.contrib import admin
-from .models import Produtos, Vendas
+from django.contrib.admin import AdminSite
+from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
+from .models import Produtos, Vendas, UserCell
 import datetime
 
-class CustomAdminSite(admin.AdminSite):
-    site_header = 'Administração Baraquinhas'
+AdminSite.site_header = 'Administração Baraquinhas'
+AdminSite.site_title = 'Administração Baraquinhas'
 
+class UserCellInline(admin.StackedInline):
+    model = UserCell
+    can_delete = False
+    verbose_name = 'Celular/Telefone do Usuário'
+
+class NovoUser(UserAdmin):
+    inlines = (UserCellInline, )
+    list_display = ('username', 'first_name', 'last_name', 'is_staff', 'get_telefone')
+
+    def get_telefone(self, instance):
+        if hasattr(instance, 'acesso'):
+            return instance.acesso.telefone
+        return None
+    get_telefone.short_description = 'Telefone'
+
+@admin.register(Produtos)
 class AdminProdutos(admin.ModelAdmin):
     list_display = ('nome', 'valor_formatado', 'categoria', 'ativo')
     search_fields = ['nome']
@@ -16,7 +34,7 @@ class AdminProdutos(admin.ModelAdmin):
         return valor
     valor_formatado.short_description = 'Valor (R$)'
 
-
+@admin.register(Vendas)
 class AdminVendas(admin.ModelAdmin):
     list_display = ('id_venda', 'id_vendedor', 'data_formatada', 'get_forma_pagamento', 'valor_formatado', 'ativo_dispaly')
     list_filter = ['ativo']
@@ -40,9 +58,6 @@ class AdminVendas(admin.ModelAdmin):
         return obj.ativo 
 
     ativo_dispaly.short_description = 'Está Ativo?'
-        
 
-custom_admin_site = CustomAdminSite(name='customadmin')
-custom_admin_site.register(User, admin.ModelAdmin)
-custom_admin_site.register(Produtos, AdminProdutos)
-custom_admin_site.register(Vendas, AdminVendas)
+admin.site.unregister(User)        
+admin.site.register(User, NovoUser)        

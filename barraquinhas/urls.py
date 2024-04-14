@@ -3,6 +3,7 @@ from .views import *
 
 urlpatterns = [
     path('login', login_view, name='login'),
+    path('logout', logout_veiw, name='logout'),
     path('vendas', vendas, name='vendas'),
     path('checkout', checkout, name='checkout'),
     path('venda-gerada', gerar_venda, name='venda_finalizada'),

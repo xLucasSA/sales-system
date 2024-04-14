@@ -4,7 +4,8 @@ main{
 }
 
 #saoPedro {
-    width: 35%;
+    max-height: 40vh;
+    max-width: 226px;
     padding: 10px;
     background-color: #f2f2f2;
     border-radius: 15px;
@@ -12,20 +13,21 @@ main{
 }
 
 form {
-    width: 35%;
     text-align: center;
     font-size: 16px;
     margin-bottom: 25px;
+    max-width: 226px;
 }
 
 button {
     margin: 10px;
-    width: 50%;
+    max-width: 40vh;
+    min-width: 155px;
 }
 
 button a {
     text-decoration: none;
-    color: white;
+    color: var(--cor-terciaria);
 }
 
 #botoes {
@@ -36,32 +38,4 @@ button a {
 
 #login_erro {
     margin: 0;
-}
-
-@media (max-width: 920px) {
-    button {
-        width: 70%;
-    }
-    
-    #saoPedro { 
-        width: 45%;
-    }
-
-    form {
-        width: 45%;
-    }
-}
-
-@media (max-width: 700px) {
-    button {
-        width: 70%;
-    }
-    
-    #saoPedro { 
-        width: 60%;
-    }
-
-    form {
-        width: 60%;
-    }
 }

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .models import Produtos
 from .forms import *
@@ -7,12 +7,18 @@ from django.utils.timezone import now as dateNow
 import datetime
 from django.db.models import Q
 
+@login_required(login_url='login')
 def index(request):
     return render(request, 'index.html')
 
 def login_view(request):
-
+    
     if request.method == "GET":
+        user = request.user
+        
+        if user.is_authenticated:
+            return redirect('index')
+
         return render(request, 'login.html')
     
     else:
@@ -23,12 +29,17 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('vendas')  
+            return redirect('index')  
          
         else:
             return render(request, "login.html", context={"mensagem":"Login ou senha incorreta"})  
 
-@login_required(login_url="/login") 
+def logout_veiw(request):
+    logout(request)
+    
+    return redirect('login')
+
+@login_required(login_url="login") 
 def vendas(request):
     produtos = Produtos.objects.filter(ativo=True)
 
@@ -52,7 +63,7 @@ def vendas(request):
 
     return render(request, 'vendas.html', context)
 
-@login_required(login_url="/login") 
+@login_required(login_url="login") 
 def checkout(request):
     if request.method == 'POST':
         context = {
@@ -79,7 +90,7 @@ def checkout(request):
     return render(request, 'checkout.html', context)
 
 
-@login_required(login_url="/login")
+@login_required(login_url="login")
 def gerar_venda(request):
     
     if request.method == "POST":
@@ -124,7 +135,7 @@ def gerar_venda(request):
 
         #informar que houve erro ao registrar a venda 
       
-@login_required(login_url="/login")
+@login_required(login_url="login")
 def historico_vendas(request):
     user = request.user
 
