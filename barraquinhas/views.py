@@ -6,6 +6,7 @@ from .forms import *
 from django.utils.timezone import now as dateNow
 import datetime
 from django.db.models import Q
+import pytz
 
 @login_required(login_url='login')
 def index(request):
@@ -96,7 +97,7 @@ def gerar_venda(request):
     if request.method == "POST":
         dados_venda = {
             'id_vendedor': request.user.id,
-            'data_venda': dateNow().date(),
+            'data_venda': dateNow().astimezone(tz=pytz.timezone('America/Sao_Paulo')).date(),
             'ativo': True,
         }
         itens_vendidos = {}

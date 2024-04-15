@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now as dateNow
 from django.contrib.auth.models import User
+import pytz
 
 class UserCell(models.Model):
     user = models.OneToOneField(User, related_name='acesso', on_delete=models.CASCADE)
@@ -43,7 +44,7 @@ class Vendas(models.Model):
 
     id_venda = models.AutoField(primary_key=True, unique=True)
     id_vendedor = models.ForeignKey(User, on_delete=models.CASCADE)
-    data_venda = models.DateField(null=False, blank=False, default=dateNow())
+    data_venda = models.DateField(null=False, blank=False, default=dateNow().astimezone(tz=pytz.timezone('America/Sao_Paulo')).date())
     forma_pagamento = models.IntegerField(null=False, blank=False, default=Pagamento.DINHEIRO, choices=Pagamento.choices)
     valor_total = models.FloatField(null=False, blank=False)
     ativo = models.BooleanField(default=True)

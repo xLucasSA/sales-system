@@ -52,6 +52,7 @@ class AdminVendas(admin.ModelAdmin):
     def data_formatada(self, obj):
         data = datetime.date.strftime(obj.data_venda, "%d/%m/%Y")
         return data
+    data_formatada.short_description = 'Data'
     
     @admin.display(boolean=True)
     def ativo_dispaly(self, obj):
