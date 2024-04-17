@@ -2,6 +2,12 @@
 
 <div id="sidebar">
     <ul>
+        <a href="{% url 'index' %}" id="inicio">
+            <li>
+                <img src="{% static 'img/menu-button.png' %}" alt="Menu" width="16" height="16" class="d-inline-block align-text-top">
+                Início
+            </li>
+        </a>
         <a href="{% url 'vendas' %}" id="currency-dollar">
             <li>
                 <img src="{% static 'img/currency-dollar.png' %}" alt="Nova Venda" width="16" height="16" class="d-inline-block align-text-top">
@@ -11,7 +17,11 @@
         <a href="{% url 'historico_vendas' %}" id="report">
             <li>
                 <img src="{% static 'img/receipt-cutoff.png' %}" alt="Histórico Vendas" width="16" height="16" class="d-inline-block align-text-top">
-                Histórico Vendas
+                Histórico do Dia
             </li>
         </a>
 </div>
+
+{% block scripts %}
+    <script src="{% static "js/sidebar.js" %}"></script>
+{% endblock %}

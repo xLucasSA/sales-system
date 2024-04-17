@@ -7,11 +7,11 @@ main{
 
 #currency-dollar li {
     background-color: rgba(245, 222, 179, 0.5);
-    color: #225d6e;
+    color: var(--cor-principal);
 }
 
 #content {
-    background-color: rgba(245, 222, 179, 0.5);
+    background-color: var(--cor-terciaria);
     width: 100%;
 }
 
@@ -55,8 +55,8 @@ form {
 
 .card-header {
     text-align: left;
-    background-color: #225d6e;
-    color: white;
+    background-color: var(--cor-principal);
+    color: var(--cor-terciaria);
 }
 
 .card-body {
@@ -73,7 +73,7 @@ form {
 .categoria-card {
     display: flex;
     flex-wrap: wrap;
-    background-color: #225d6e50;
+    background-color: var(--cor-secundaria);
 }
 
 button {

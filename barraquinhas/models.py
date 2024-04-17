@@ -1,7 +1,11 @@
 from django.db import models
 from django.utils.timezone import now as dateNow
 from django.contrib.auth.models import User
+import pytz
 
+class UserCell(models.Model):
+    user = models.OneToOneField(User, related_name='acesso', on_delete=models.CASCADE)
+    telefone = models.CharField(max_length=11, null=False, blank=False)
 
 class Produtos(models.Model):
     class Categoria(models.TextChoices):
@@ -31,7 +35,6 @@ class Produtos(models.Model):
     class Meta:
         verbose_name_plural = "Produtos"
     
-
 class Vendas(models.Model):
     class Pagamento(models.IntegerChoices):
         DINHEIRO = 1, 'Dinheiro'
@@ -41,7 +44,7 @@ class Vendas(models.Model):
 
     id_venda = models.AutoField(primary_key=True, unique=True)
     id_vendedor = models.ForeignKey(User, on_delete=models.CASCADE)
-    data_venda = models.DateField(null=False, blank=False, default=dateNow())
+    data_venda = models.DateField(null=False, blank=False, default=dateNow().astimezone(tz=pytz.timezone('America/Sao_Paulo')).date())
     forma_pagamento = models.IntegerField(null=False, blank=False, default=Pagamento.DINHEIRO, choices=Pagamento.choices)
     valor_total = models.FloatField(null=False, blank=False)
     ativo = models.BooleanField(default=True)

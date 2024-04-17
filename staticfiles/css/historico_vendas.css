@@ -6,12 +6,12 @@ main{
 }
 
 #report li {
-    background-color: var(--cor-fundo);
+    background-color: rgba(245, 222, 179, 0.5);
     color: var(--cor-principal);
 }
 
 #content {
-    background-color: var(--cor-fundo);
+    background-color: rgba(245, 222, 179, 0.5);
     width: 100%;
 }
 

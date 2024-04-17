@@ -1,9 +1,8 @@
 #sidebar {
     display: flex;
     height: -webkit-fill-available;
-    background-color: #225d6e;
+    background-color: var(--cor-principal);
     text-align: justify;
-    align-items: center;
 }
 
 #sidebar ul {
@@ -16,19 +15,19 @@
 #sidebar li {
     padding: 5px 15px;
     display: block;
-    transition: 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
 }
 
 #sidebar li:hover {
-    color: #225d6e;
+    color: var(--cor-principal);
     background-color: wheat;
 }
 
 #sidebar a {
     text-decoration: none;
-    color: white;
+    color: var(--cor-terciaria);
 }
 
 #sidebar a:hover {
-    color: #225d6e;
+    color: var(--cor-principal);
 }
