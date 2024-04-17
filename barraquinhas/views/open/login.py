@@ -2,8 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 
 def login_view(request):
-
+    
     if request.method == "GET":
+        user = request.user
+        
+        if user.is_authenticated:
+            return redirect('index')
+
         return render(request, 'login.html')
     
     else:
@@ -14,7 +19,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('vendas')  
+            return redirect('index')  
          
         else:
-            return render(request, "login.html", context={"mensagem":"Login ou senha incorreta"}) 
+            return render(request, "login.html", context={"mensagem":"Login ou senha incorreta"})  
