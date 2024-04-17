@@ -1,6 +1,6 @@
 from barraquinhas.admin import custom_admin_site
 from django.urls import path, include
-from barraquinhas.views import index
+from barraquinhas.views import *
 
 
 urlpatterns = [
