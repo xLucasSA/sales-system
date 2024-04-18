@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from barraquinhas.views import index
+from barraquinhas.views import *
 
 
 urlpatterns = [
