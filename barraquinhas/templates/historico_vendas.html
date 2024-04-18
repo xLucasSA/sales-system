@@ -20,9 +20,10 @@
             <thead>
                 <tr>
                     <th scope="col" class="colunas-centralizadas">#</td>
-                    <th scope="col">Data</td>
+                    <th scope="col" class="colunas-centralizadas">Data</td>
                     <th scope="col">Forma Pagamento</td>
-                    <th scope="col">Valor Final</td>
+                    <th scope="col" class="colunas-centralizadas">Valor Final</td>
+                    <th scope="col" class="colunas-centralizadas">Opções</td>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -32,6 +33,7 @@
                         <td>{{regsitro.data_venda}}</td>
                         <td>{{regsitro.get_forma_pagamento_display}}</td>
                         <td>R$ {{regsitro.valor_total | floatformat:2}}</td>
+                        <td>opções...</td>
                     </tr>
                 {% endfor %}
             </tbody>
