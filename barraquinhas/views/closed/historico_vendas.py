@@ -21,5 +21,3 @@ def historico_vendas(request):
         registro.data_venda = datetime.date.strftime(registro.data_venda, "%d/%m/%Y")
 
     return render(request, 'historico_vendas.html', {'registros': registros})
-
-    #Verificar se será necessário utilizar essa parte para editar os pedidos

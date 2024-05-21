@@ -5,7 +5,7 @@ import pytz
 
 class UserCell(models.Model):
     user = models.OneToOneField(User, related_name='acesso', on_delete=models.CASCADE)
-    telefone = models.CharField(max_length=11, null=False, blank=False)
+    telefone = models.CharField(max_length=16, null=False, blank=False)
 
 class Produtos(models.Model):
     class Categoria(models.TextChoices):
@@ -47,7 +47,6 @@ class Vendas(models.Model):
     data_venda = models.DateField(null=False, blank=False, default=dateNow().astimezone(tz=pytz.timezone('America/Sao_Paulo')).date())
     forma_pagamento = models.IntegerField(null=False, blank=False, default=Pagamento.DINHEIRO, choices=Pagamento.choices)
     valor_total = models.FloatField(null=False, blank=False)
-    ativo = models.BooleanField(default=True)
 
     class Meta:
         verbose_name_plural = "Vendas"

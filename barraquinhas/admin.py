@@ -36,8 +36,7 @@ class AdminProdutos(admin.ModelAdmin):
 
 @admin.register(Vendas)
 class AdminVendas(admin.ModelAdmin):
-    list_display = ('id_venda', 'id_vendedor', 'data_formatada', 'get_forma_pagamento', 'valor_formatado', 'ativo_dispaly')
-    list_filter = ['ativo']
+    list_display = ('id_venda', 'id_vendedor', 'data_formatada', 'get_forma_pagamento', 'valor_formatado')
 
     def get_forma_pagamento(self, instance):
         return instance.get_forma_pagamento_display()
@@ -53,12 +52,6 @@ class AdminVendas(admin.ModelAdmin):
         data = datetime.date.strftime(obj.data_venda, "%d/%m/%Y")
         return data
     data_formatada.short_description = 'Data'
-    
-    @admin.display(boolean=True)
-    def ativo_dispaly(self, obj):
-        return obj.ativo 
-
-    ativo_dispaly.short_description = 'Está Ativo?'
 
 admin.site.unregister(User)        
 admin.site.register(User, NovoUser)        
