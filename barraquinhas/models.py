@@ -3,10 +3,6 @@ from django.utils.timezone import now as dateNow
 from django.contrib.auth.models import User
 import pytz
 
-class UserCell(models.Model):
-    user = models.OneToOneField(User, related_name='acesso', on_delete=models.CASCADE)
-    telefone = models.CharField(max_length=16, null=False, blank=False)
-
 class Produtos(models.Model):
     class Categoria(models.TextChoices):
         ALIMENTOS = 'A', 'Alimentos'

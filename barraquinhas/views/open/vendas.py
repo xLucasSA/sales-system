@@ -1,8 +1,6 @@
 from ...models import Produtos
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 
-@login_required(login_url="login") 
 def vendas(request):
     produtos = Produtos.objects.filter(ativo=True)
 

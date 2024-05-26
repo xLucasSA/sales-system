@@ -1,27 +1,11 @@
 from django.contrib import admin
 from django.contrib.admin import AdminSite
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
-from .models import Produtos, Vendas, UserCell
+from django.contrib.auth.models import User, Group
+from .models import Produtos, Vendas
 import datetime
 
 AdminSite.site_header = 'Administração Baraquinhas'
 AdminSite.site_title = 'Administração Baraquinhas'
-
-class UserCellInline(admin.StackedInline):
-    model = UserCell
-    can_delete = False
-    verbose_name = 'Celular/Telefone do Usuário'
-
-class NovoUser(UserAdmin):
-    inlines = (UserCellInline, )
-    list_display = ('username', 'first_name', 'last_name', 'is_staff', 'get_telefone')
-
-    def get_telefone(self, instance):
-        if hasattr(instance, 'acesso'):
-            return instance.acesso.telefone
-        return None
-    get_telefone.short_description = 'Telefone'
 
 @admin.register(Produtos)
 class AdminProdutos(admin.ModelAdmin):
@@ -52,6 +36,6 @@ class AdminVendas(admin.ModelAdmin):
         data = datetime.date.strftime(obj.data_venda, "%d/%m/%Y")
         return data
     data_formatada.short_description = 'Data'
-
-admin.site.unregister(User)        
-admin.site.register(User, NovoUser)        
+        
+admin.site.unregister(User)
+admin.site.unregister(Group)     

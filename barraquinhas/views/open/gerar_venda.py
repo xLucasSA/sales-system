@@ -1,10 +1,8 @@
 from ...forms import VendasForm, ItensVendasForm
 from django.shortcuts import redirect
 from django.utils.timezone import now as dateNow
-from django.contrib.auth.decorators import login_required
 import pytz
 
-@login_required(login_url="login")
 def gerar_venda(request):
     
     if request.method == "POST":

@@ -7,7 +7,7 @@
       <h4>Barraquinhas São Pedro Apóstolo</h4>
     </div>
     {% if request.user.is_authenticated %}
-      <a href="" data-url="{% url "logout" %}" onClick="confimrarSaida()" id="sair">
+      <a href="#" data-url="{% url "logout" %}" onClick="confimrarSaida()" id="sair">
         <img src="{% static 'img/door-open.png' %}" alt="Sair" width="16" height="16" class="d-inline-block align-text-top">
         Sair
       </a>
