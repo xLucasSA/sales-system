@@ -24,6 +24,7 @@ class Produtos(models.Model):
     categoria = models.CharField(max_length=1, choices=Categoria.choices, default=Categoria.OUTROS)
     ativo = models.BooleanField(null=False, blank=False, default=True)
     medida = models.CharField(max_length=2, choices=Medida.choices, default=Medida.OUTROS)
+    imagem = models.ImageField(upload_to='produtos/', null=True, blank=True)
 
     def __str__(self) -> str:
         return self.nome
@@ -39,7 +40,6 @@ class Vendas(models.Model):
         PIX = 4, 'PIX'
 
     id_venda = models.AutoField(primary_key=True, unique=True)
-    id_vendedor = models.ForeignKey(User, on_delete=models.CASCADE)
     data_venda = models.DateField(null=False, blank=False, default=dateNow().astimezone(tz=pytz.timezone('America/Sao_Paulo')).date())
     forma_pagamento = models.IntegerField(null=False, blank=False, default=Pagamento.DINHEIRO, choices=Pagamento.choices)
     valor_total = models.FloatField(null=False, blank=False)
