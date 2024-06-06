@@ -38,6 +38,7 @@ class Vendas(models.Model):
         DEBITO = 2, 'Catão de Débito'
         CREDITO = 3, 'Cartão de Crédito'
         PIX = 4, 'PIX'
+        DEVOLUCAO = 5, 'Devolução'
 
     id_venda = models.AutoField(primary_key=True, unique=True)
     data_venda = models.DateField(null=False, blank=False, default=dateNow().astimezone(tz=pytz.timezone('America/Sao_Paulo')).date())

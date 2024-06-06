@@ -80,3 +80,8 @@ button {
     width: 15%;
     margin: 5px;
 }
+
+.img-produto {
+    display: flex;
+    align-items: center;
+}

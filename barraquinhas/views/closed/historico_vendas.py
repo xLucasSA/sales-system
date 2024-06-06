@@ -7,7 +7,6 @@ from ...models import Vendas, ItensVenda
 import datetime
 import pytz
 
-@login_required(login_url="login")
 def historico_vendas(request):
     user = request.user
 

@@ -4,4 +4,4 @@ from django.contrib.auth import logout
 def logout_veiw(request):
     logout(request)
     
-    return redirect('login')
+    return redirect('index')

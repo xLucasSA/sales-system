@@ -28,8 +28,8 @@
                         {% for produto in produtos %}
                             <div class="card items" style="max-width: 300px;">
                                 <div class="row g-0">
-                                    <div class="col-md-4">
-                                        {% if produto.nome == 'Canjica' %}
+                                    <div class="col-md-4 img-produto">
+                                        {% if produto.imagem %}
                                         <img src="{{produto.imagem.url}}" class="img-fluid rounded-start" alt="{{produto.nome}}">
                                         {% endif %}
                                     </div>
