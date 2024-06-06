@@ -1,12 +1,23 @@
 {% extends "./base.html" %}
 {% load static %} 
 
+{% block title %} Relatório {% endblock %} 
 
-{% block content %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/vendas.css' %}" />
+{% endblock %}
 
+
+{%block content%}
+<main>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+</main>
 {% endblock content %}
 
 
 {% block scripts %}
-
+    <script type="module" src="{% static "js/chart/chart.cjs" %}"></script>    
+    <script type="module" src="{% static "js/relatorio_vendas.js" %}"></script>
 {% endblock scripts %} 
