@@ -29,7 +29,9 @@
                             <div class="card items" style="max-width: 300px;">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img src="..." class="img-fluid rounded-start" alt="...">
+                                        {% if produto.nome == 'Canjica' %}
+                                        <img src="{{produto.imagem.url}}" class="img-fluid rounded-start" alt="{{produto.nome}}">
+                                        {% endif %}
                                     </div>
                                     <div class="col-md-8 textos">
                                         <div class="card-body">
