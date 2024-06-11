@@ -13,7 +13,7 @@
 }
 
 main {
-    max-width: 1300px;
+    max-width: 1400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +23,7 @@ main {
 #titulo-pagina {
     color: var(--cor-terciaria);
     width: 100%;
-    max-width: 1300px;
+    max-width: 1400px;
     align-items: center;
     margin: auto;
     display: grid;

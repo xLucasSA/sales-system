@@ -5,19 +5,36 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'css/vendas.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/relatorio_vendas.css' %}" />
 {% endblock %}
 
 
 {%block content%}
-<main>
-    <div>
-        <canvas id="myChart"></canvas>
+<main id="content">
+    {% include "./sidebar.html" %}
+    <div class="vendas-admin">
+        <div class="filtros">
+            Filtros
+        </div>
+        <div class="graficos">
+            <div class="grafico" id="quantidade">
+                <canvas id="quantidadeVendida"  data-url="{% url "graficos-vendas" %}"></canvas>
+            </div>
+            <div class="grafico" id="valor">
+                <canvas id="valorVendido"></canvas>
+            </div>
+        </div>
+        <div class="donwloads">
+            Extrair
+        </div>
     </div>
 </main>
 {% endblock content %}
 
 
 {% block scripts %}
-    <script type="module" src="{% static "js/chart/chart.cjs" %}"></script>    
-    <script type="module" src="{% static "js/relatorio_vendas.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/chart/chart.umd.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/utils.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/gerador_graficos.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/relatorio_vendas.js" %}"></script>
 {% endblock scripts %} 

@@ -1,5 +1,9 @@
 {% load static %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}" /> 
+{% endblock styles %}
+
 <div id="sidebar">
     <ul>
         <a href="{% url 'index' %}" id="inicio">
@@ -14,6 +18,14 @@
                 Nova Venda
             </li>
         </a>
+        {% if request.user.is_staff %}
+        <a href="{% url 'admin:index' %}" id="receipt-cutoff">
+            <li>
+                <img src="{% static 'img/receipt-cutoff.png' %}" alt="Nova Venda" width="16" height="16" class="d-inline-block align-text-top">
+                Administração
+            </li>
+        </a>
+        {% endif %}
 </div>
 
 {% block scripts %}

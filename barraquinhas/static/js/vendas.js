@@ -66,13 +66,11 @@ function fecharPedido(pedido, totalPedido) {
 
     for (let produto of pedido) {
         const id = produto.id
-        const quantidade = Number(produto.quantidade)
+        const quantidade = String(produto.quantidade)
+        const valorUnitario = String(produto.valor_unitario)
 
         if (quantidade > 0) {
-            formData[id] = quantidade
-        }
-        else {
-            continue
+            formData[id] = `${quantidade} X ${valorUnitario}`
         }
     }
 

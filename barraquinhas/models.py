@@ -49,7 +49,11 @@ class Vendas(models.Model):
         verbose_name_plural = "Vendas"
         ordering = ['-data_venda']
 
+    def __str__(self):
+        return f"Venda {self.id_venda} -> {self.forma_pagamento} ({self.data_venda}) - {self.valor_total}"
+
 class ItensVenda(models.Model):
     id_venda = models.ForeignKey(Vendas, on_delete=models.CASCADE)
     id_produto = models.ForeignKey(Produtos, on_delete=models.CASCADE)
     quantidade = models.IntegerField(null=False, blank=False)
+    valor_unitario = models.FloatField(null=False, blank=False)

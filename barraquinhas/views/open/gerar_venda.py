@@ -7,9 +7,7 @@ def gerar_venda(request):
     
     if request.method == "POST":
         dados_venda = {
-            'id_vendedor': request.user.id,
             'data_venda': dateNow().astimezone(tz=pytz.timezone('America/Sao_Paulo')).date(),
-            'ativo': True,
         }
         itens_vendidos = {}
 
@@ -21,19 +19,22 @@ def gerar_venda(request):
             elif id == 'valor_total':
                 dados_venda['valor_total'] = float(quantidade)
 
-            else:
-                if id != 'csrfmiddlewaretoken':
-                    itens_vendidos[id] = quantidade
+            elif id != 'csrfmiddlewaretoken':
+                itens_vendidos[id] = quantidade
 
         venda_realizada = VendasForm(dados_venda)
 
         if venda_realizada.is_valid():
             venda_registrada = venda_realizada.save()
             
-            for item, quantidade in itens_vendidos.items():
+            for item, quantidade_e_valor_unitario in itens_vendidos.items():
+                quantidade = quantidade_e_valor_unitario.split(' X ')[0]
+                valor_unitario = quantidade_e_valor_unitario.split(' X ')[1]
+
                 item_venda = {
                     'id_produto': item,
-                    'quantidade': quantidade,
+                    'quantidade': float(quantidade),
+                    'valor_unitario': float(valor_unitario),
                     'id_venda': venda_registrada.id_venda
                 }
 
