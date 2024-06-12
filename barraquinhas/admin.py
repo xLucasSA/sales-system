@@ -24,6 +24,16 @@ class AdminProdutos(admin.ModelAdmin):
             return format_html('<img src="{}" style="width: 50px; height: auto;" />'.format(obj.imagem.url))
         return "-"
     imagem_tag.short_description = 'Imagem'
+
+@admin.register(Vendas)
+class AdminVendas(admin.ModelAdmin):
+    list_display = ('forma_pagamento', 'valor_formatado', 'data_venda')
+
+    def valor_formatado(self, obj):
+        valor = "R$ {:,.2f}".format(obj.valor_total)
+        valor = valor.replace('.', '*').replace(',', '.').replace('*', ',')
+        return valor
+    valor_formatado.short_description = 'Valor (R$)'
         
 admin.site.unregister(User)
 admin.site.unregister(Group)     

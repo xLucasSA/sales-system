@@ -14,7 +14,17 @@
     {% include "./sidebar.html" %}
     <div class="vendas-admin">
         <div class="filtros">
-            Filtros
+            <div class="form-floating mb-3">
+                <input type="date" name="data_inicial" value="{{data_inicio}}" class="form-control" placeholder="Data Inicial" id="dataInicio">
+                <label>Data Inicial</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="date" name="data_final" value="{{data_fim}}" class="form-control" placeholder="Data Final" id="dataFim">
+                <label>Data Final</label>
+            </div>
+            <button type="button" data-url="{% url "exportar_vendas" %}" id="excel-download" class="btn btn-primary" onclick="exportarExcel()">
+                <img src={% static "img/filetype-xlsx white.png" %} />
+            </button>
         </div>
         <div class="graficos">
             <div class="grafico" id="quantidade">
@@ -23,9 +33,6 @@
             <div class="grafico" id="valor">
                 <canvas id="valorVendido"></canvas>
             </div>
-        </div>
-        <div class="donwloads">
-            Extrair
         </div>
     </div>
 </main>

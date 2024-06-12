@@ -35,3 +35,28 @@
 #quantidade {
     max-width: 97%;
 }
+.filtros {
+    display: flex;
+    margin-top: 2%;
+    gap: 20px;
+}
+
+div input {
+    min-width: 215px;
+}
+
+#excel-download img {
+    width: 30px;
+}
+
+.btn {
+    align-self: flex-start;
+    margin: 0;
+    height: 57px;
+    width: 100%;
+}
+
+.filtros a {
+    width: 57px;
+    height: 57px;
+}

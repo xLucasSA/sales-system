@@ -1,32 +1,10 @@
 
-async function criarGrafico(chartId, type, labels, data, subtitles, axis) {
-    new Chart(chartId, {
-        type,
-        data: {
-           labels,
-           datasets: [{
-              label: subtitles,
-              data,
-              borderWidth: 3,
-              tension: 0.4
-           }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                }
-            },
-            indexAxis: axis,
-
-        }
-     });
-}
-
-async function coletarDados(nomeGrafico) {
+async function coletarDados(nomeGrafico, dataInicio, dataFim) {
     const url = quantidadeVendida.getAttribute('data-url')
     const data = {
-        nomeGrafico
+        nomeGrafico,
+        'data_inicio': dataInicio,
+        'data_fim': dataFim,
     }
     
     const response = await fetch(url, {
@@ -36,11 +14,6 @@ async function coletarDados(nomeGrafico) {
         },
         body: JSON.stringify(data)
     })
-
-    if(!response.ok) {
-        // TODO:Mensagem de ERRO!
-        return console.log(response.status);
-    }
 
     return response
 }

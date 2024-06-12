@@ -7,5 +7,6 @@ urlpatterns = [
     path('checkout', checkout, name='checkout'),
     path('venda-gerada', gerar_venda, name='venda_finalizada'),
     path('relatorio-vendas', relatorio_vendas, name='relatorio_vendas'),
-    path('graficos-vendas', gerar_graficos, name='graficos-vendas')
+    path('graficos-vendas', gerar_graficos, name='graficos-vendas'),
+    path('exportar-vendas', exportar_para_excel, name='exportar_vendas')
 ]
