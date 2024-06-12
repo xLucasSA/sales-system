@@ -11,7 +11,6 @@ pefile==2023.2.7
 Pillow==10.1.0
 psycopg2==2.9.9
 psycopg2-binary==2.9.9
-pyinstaller==6.8.0
 pyinstaller-hooks-contrib==2024.7
 python-decouple==3.8
 pytz==2024.1
