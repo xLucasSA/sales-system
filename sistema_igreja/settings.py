@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'sistema_igreja.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": config('sistema_igreja.db'),
+        "NAME": config('DB_NAME'),
     }
 }
 
