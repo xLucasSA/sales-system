@@ -32,9 +32,11 @@
             {% endif %}
           </tr>
         {% endfor %}
-        <tr class="model-vendas">
-            <th scope="row" colspan="3"><a href="{% url "relatorio_vendas" %}">Relatório Vendas</a></th>
-        </tr>
+        {% if app.name == "Barraquinhas" %}
+          <tr class="model-vendas">
+              <th scope="row" colspan="3"><a href="{% url "relatorio_vendas" %}">Relatório Vendas</a></th>
+          </tr>
+        {% endif %}
       </table>
     </div>
   {% endfor %}

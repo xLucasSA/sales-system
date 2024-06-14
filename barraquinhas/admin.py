@@ -35,5 +35,4 @@ class AdminVendas(admin.ModelAdmin):
         return valor
     valor_formatado.short_description = 'Valor (R$)'
         
-admin.site.unregister(User)
 admin.site.unregister(Group)     
