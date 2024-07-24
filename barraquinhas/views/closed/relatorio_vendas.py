@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views.decorators.csrf import csrf_exempt
@@ -16,6 +16,9 @@ from django.http import HttpResponse
 def relatorio_vendas(request):
     datas = Vendas.objects.distinct().values_list('data_venda', flat=True)
     
+    if not datas:
+        return render(request, 'relatorio_vendas.html')
+
     context = {
         'data_fim': datas[0].strftime('%Y-%m-%d'),
         'data_inicio': datas[len(datas) - 1].strftime('%Y-%m-%d')
@@ -113,6 +116,9 @@ def grafico_valor_arrecadado(data_inicio, data_fim):
 def exportar_para_excel(request):
     data_inicio = request.GET.get('data_inicio')
     data_fim = request.GET.get('data_fim')
+
+    if not data_fim or not data_inicio:
+        return redirect("relatorio_vendas")
 
     itens_vendidos = ItensVenda.objects.prefetch_related('id_venda').filter(id_venda__data_venda__gte=data_inicio, id_venda__data_venda__lte=data_fim)
 
